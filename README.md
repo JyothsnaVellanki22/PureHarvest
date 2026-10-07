@@ -1,4 +1,4 @@
-# PureHarvest (పరిశుద్ధ పంట) 🌾
+# PureHarvest
 
 > **Empowering Direct Farm-to-Consumer Agriculture Across Andhra Pradesh & Telangana**
 
