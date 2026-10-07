@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:16-alpine
+    container_name: pureharvest_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pureharvest_password
+      POSTGRES_DB: pureharvest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # FastAPI Backend Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pureharvest_api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:pureharvest_password@db:5432/pureharvest
+      SECRET_KEY: pureharvest-docker-secret-key-production-replace-me-987654321
+      ENVIRONMENT: production
+      LOG_LEVEL: INFO
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+
+volumes:
+  postgres_data:
