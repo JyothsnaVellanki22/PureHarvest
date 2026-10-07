@@ -10,29 +10,6 @@ PureHarvest is a production-grade, sustainable agriculture platform designed to 
 
 PureHarvest follows modern enterprise standards for scalability, maintainability, and resilience:
 
-```
-src/
-├── app/                  # Next.js Presentation & Stateless API Layer
-│   ├── api/              # Stateless API endpoints (farms, health, plans)
-│   ├── browse/           # Farm exploration & district filtering
-│   ├── farm/[id]/        # Individual farm details & harvest plans
-│   ├── farmer/           # Rythu / Producer portal
-│   └── sustainability/   # Traceability & environmental impact
-├── components/           # Reusable UI & Layout Components
-│   ├── common/           # Error boundaries & shared widgets
-│   ├── farm/             # Farm cards & directory components
-│   └── layout/           # Global Navigation & Footer
-├── services/             # Business Logic Layer (Clean Architecture)
-├── types/                # Domain models, API contracts & interfaces
-└── lib/                  # Shared infrastructure & utilities
-    ├── api/              # Resilient API client (retries, timeouts)
-    ├── data/             # Data access layer & repository abstractions
-    ├── idempotency/      # Idempotency key tracking for safe mutations
-    ├── logger/           # Structured, differentiated logging
-    ├── resilience/       # Circuit breakers & exponential backoff
-    └── security/         # Input sanitization, validator & secure headers
-```
-
 ### Key Architectural Tenets
 1. **Modular Layering**: Strict boundaries between Presentation, Business Logic (`services/`), Data Access (`lib/data/`), and Domain Contracts (`types/`).
 2. **Stateless Backend**: Route handlers (`/api/farms`, `/api/health`, `/api/plans/subscribe`) are entirely stateless, enabling zero-friction horizontal scaling.
