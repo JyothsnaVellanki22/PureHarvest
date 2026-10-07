@@ -1,14 +1,5 @@
-export interface Farm {
-  id: string;
-  name: string;
-  location: string;
-  district: string;
-  rating: number;
-  image: string;
-  tags: string[];
-  plansCount: number;
-  category: string;
-}
+import { Farm } from "@/types/farm";
+export type { Farm };
 
 export const CROP_CATEGORIES = [
   "All",
